@@ -1,0 +1,3 @@
+class SoupsController < ApplicationController
+
+end
