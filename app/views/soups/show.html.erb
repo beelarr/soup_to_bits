@@ -5,3 +5,6 @@
   <% else %>
   <p>This soup is not in season.</p>
 <% end %>
+<% if params[:admin] =='true' %>
+<p><%= link_to "Featured", toggled_featured_path(@soup) %></p>
+<% end %>

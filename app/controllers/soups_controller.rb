@@ -1,5 +1,5 @@
 class SoupsController < ApplicationController
-  before_action :fetch_soup, only: [:show, :edit, :update, :destroy]
+  before_action :fetch_soup, only: [:show, :edit, :update, :destroy, :toggled_featured]
 
   def show
     respond_to do |format|
@@ -12,6 +12,15 @@ class SoupsController < ApplicationController
     respond_to do |format|
       format.json{ render json: @soups}
     end
+  end
+  def toggled_featured
+    @soup.toggle!(:featured)
+    flash[:notice] = "Successfully changed the feature flag."
+    redirect_to @soup
+  end
+  def secret_soups
+    session[:vip] = true
+    redirect_to root_path
   end
 
   private
